@@ -4,7 +4,11 @@ public class textCalc{
     public static void main (String[] args){
         Scanner scan = new Scanner(System.in);
         String oper; 
-        Operation operation;
+        Operation operation = new Operation(0, 0);
+        CalcMemory calcMemory = new CalcMemory(0);
+        double resultOfLastOperation = 0;
+        
+
         //EnterData enterData;
         //double var1, var2;
 
@@ -18,7 +22,23 @@ public class textCalc{
             System.out.println("type \'sub\' for subtraction,");
             System.out.println("type \'mul\' for multlipication,");
             System.out.println("type \'div\' for division,");
+            System.out.println("type \'m\' to add number to M,");
+            
+            //printing extra menu when stored memory isn't 0
+            if (calcMemory.getMemory() != 0){
+                System.out.println("type \'m+\' to add last result number to M,");
+                System.out.println("type \'m-\' to substract from M,");
+                System.out.println("type \'m*\' for multiply by M");
+                System.out.println("type \'m/\' to divide by M,");
+                System.out.println("type \'mr\' to recall stored value,");
+            }
+            // printing menu for adding number(last result) to memory
+            if(operation.workingProgress == true){
+                System.out.println("type \'mw\' for remembar last result in memory.");
+            }
+
             System.out.print("type \'end\' to exit.\n...?: ");
+
             oper = scan.nextLine();    //request type of operation
             
 
@@ -29,6 +49,7 @@ public class textCalc{
                 //request components
                 
                 operation = new Addition();
+                resultOfLastOperation = operation.getResult();
                 System.out.println("Result: "+operation.getResult());
                 //addition.setComponents(addition.setComponent(), addition.setComponent());
             }
@@ -55,11 +76,44 @@ public class textCalc{
                 scan.close();
                 System.exit(0);
             }
+
+            
+
+            // calculator memory
+            else if (oper.toUpperCase().equals("M+")){
+                operation = new Addition(resultOfLastOperation, calcMemory.getMemory());
+                resultOfLastOperation = operation.getResult();
+                calcMemory.setMemory(resultOfLastOperation);
+                // tests
+                System.out.println("resultOfLastOperation: "+resultOfLastOperation+"\ncalcMemory.getMemory(): "+calcMemory.getMemory());
+
+
+                System.out.println("Number "+calcMemory.getMemory()+" is stored now in memory.");
+            }
+            // calculator memory - write in 'memory' only last result (delete last 'memory')
+            else if (oper.toUpperCase().equals("MW")){
+                resultOfLastOperation = operation.getResult();
+                calcMemory.setMemory(resultOfLastOperation);
+            }
+
+            //add number to m
+            else if(oper.toUpperCase().equals("M")){
+                operation.getComponent();
+                calcMemory.setMemory(operation.getComponent1());
+                System.out.println("Number "+calcMemory.getMemory()+" is stored now in memory.");
+            }
+            // memory recall
+            else if (oper.toUpperCase().equals("MR")){
+                calcMemory.printMemory();
+            }
+
             // user accidently type somthing wrong
             else{
                 System.out.println("Something's wrong. Try again.");
 
             }
+
+            
             
         }
 

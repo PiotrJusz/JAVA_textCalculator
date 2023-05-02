@@ -6,6 +6,15 @@ public class EnterData {
     double result;
     Scanner scan;
 
+    
+    // request for only one double variable, no counter change
+    double enterOneDouble(){
+        scan = new Scanner(System.in);
+        System.out.println("Enter the number of  value: "); 
+        result = scan.nextDouble();
+        return result;
+    }
+
     double enterDouble(){
         scan = new Scanner(System.in);
         System.out.println("Enter the number of "+this.counter+ " value: "); 
@@ -23,6 +32,8 @@ public class EnterData {
 
         return result;
     }
+
+    
 
     protected void finalize(){
         scan.close();

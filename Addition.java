@@ -7,9 +7,15 @@ public class Addition extends Operation{
       super();
    }
 
+   public Addition(double comp1, double comp2){
+      super(comp1, comp2);
+   }
+
 
    public double getResult(){
-      return this.component1 + this.component2;
+      this.lastResult = this.component1 + this.component2;
+      workingProgress = true;
+      return lastResult;
    }
    
 

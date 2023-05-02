@@ -21,7 +21,10 @@ public class CalcMemory{
         return this.memory;
     }
 
-    
+    // print stored valuu (memory recal, 'mr')
+    public void printMemory(){
+        System.out.println("Stored value: "+this.getMemory());
+    }
 
 
 
