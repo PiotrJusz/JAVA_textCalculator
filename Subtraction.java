@@ -4,6 +4,10 @@ public class Subtraction extends Operation{
         super();
     }
 
+    public Subtraction(double comp1, double comp2){
+        super(comp1, comp2);
+    }
+
     /*public Subtraction(){
         this.getComponents();
     }
@@ -24,7 +28,9 @@ public class Subtraction extends Operation{
     }}*/
 
     public double getResult(){
-        return (this.component1 - component2);
+        this.lastResult = this.component1 - this.component2;
+        this.workingProgress = true;
+        return this.lastResult;
     }
 
     

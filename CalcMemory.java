@@ -9,6 +9,7 @@ public class CalcMemory{
 
     public void setMemory(double num){
         this.memory = num;
+        System.out.println("Number "+this.memory+" is stored now in memory.");
     }
 
     //delete memory (set as 0)

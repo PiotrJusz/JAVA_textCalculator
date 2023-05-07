@@ -14,8 +14,8 @@ public class Addition extends Operation{
 
    public double getResult(){
       this.lastResult = this.component1 + this.component2;
-      workingProgress = true;
-      return lastResult;
+      this.workingProgress = true;
+      return this.lastResult;
    }
    
 

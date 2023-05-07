@@ -3,7 +3,13 @@ public class Division extends Operation {
         super();
     }
 
+    public Division(double comp1, double comp2) {
+        super(comp1, comp2);
+    }
+
     public double getResult(){
-        return this.component1 / this.component2;
+        this.lastResult = this.component1 / this.component2;
+        this.workingProgress = true;
+        return this.lastResult;
     }
 }
